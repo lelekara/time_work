@@ -30,6 +30,12 @@ function getWorkedHours(start: string, end: string, pause: number): number {
   return Math.max(0, worked / 60) // résultat en heures décimales
 }
 
+function formatHours(hoursDecimal: number): string {
+  const h = Math.floor(hoursDecimal)
+  const m = Math.round((hoursDecimal - h) * 60)
+  return m === 0 ? `${h}h` : `${h}h${m.toString().padStart(2, "0")}`
+}
+
 export default function StatPage() {
   const [stats, setStats] = useState<{ [date: string]: number }>({})
   const [recap, setRecap] = useState<{ month: number; week: number }>({
@@ -104,7 +110,9 @@ export default function StatPage() {
               <Calendar className="h-6 w-6 opacity-80" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{recap.week.toFixed(1)}h</div>
+              <div className="text-3xl font-bold">
+                {formatHours(recap.week)}{" "}
+              </div>
               <p className="text-blue-100 text-sm">
                 {recap.week >= 2
                   ? "heures travaillées"
@@ -119,7 +127,9 @@ export default function StatPage() {
               <TrendingUp className="h-6 w-6 opacity-80" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{recap.month.toFixed(1)}h</div>
+              <div className="text-3xl font-bold">
+                {formatHours(recap.month)}{" "}
+              </div>
               <p className="text-green-100 text-sm">
                 {recap.month >= 2
                   ? "heures travaillées"
@@ -184,7 +194,7 @@ export default function StatPage() {
                             {formatted}
                           </p>
                           <p className="text-sm text-gray-500">
-                            {hours.toFixed(2)}{" "}
+                            {formatHours(hours)}{" "}
                             {hours >= 2
                               ? "heures travaillées"
                               : "heure travaillée"}
@@ -192,7 +202,7 @@ export default function StatPage() {
                         </div>
                         <div className="flex items-center gap-2">
                           <Badge className={`${getHoursColor(hours)} border-0`}>
-                            {hours.toFixed(1)}h
+                            {formatHours(hours)}
                           </Badge>
                           <button
                             onClick={() => handleDeleteDay(date)}
