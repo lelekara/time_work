@@ -23,11 +23,11 @@ function getWorkedHours(start: string, end: string, pause: number): number {
   // start et end au format "HH:mm"
   const [sh, sm] = start.split(":").map(Number)
   const [eh, em] = end.split(":").map(Number)
-  const startMinutes = sh * 60 + sm
+  let startMinutes = sh * 60 + sm
   let endMinutes = eh * 60 + em
   if (endMinutes < startMinutes) endMinutes += 24 * 60 // gestion nuit
   const worked = endMinutes - startMinutes - pause
-  return Math.max(0, worked / 60)
+  return Math.max(0, worked / 60) // résultat en heures décimales
 }
 
 export default function StatPage() {
