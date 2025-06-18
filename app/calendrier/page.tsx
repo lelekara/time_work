@@ -2,6 +2,7 @@
 import FormulaireSession from "@/components/calendrierForm";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import FooterNavigation from "@/components/FooterNavigation"
 import {
   Card,
   CardContent,
@@ -150,6 +151,7 @@ export default function CalendarPage() {
           </DialogContent>
         </Dialog>
       </div>
+      <FooterNavigation />
     </div>
   );
 }
