@@ -2,13 +2,13 @@ import type { MetadataRoute } from 'next'
  
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Next.js PWA',
-    short_name: 'NextPWA',
-    description: 'A Progressive Web App built with Next.js',
+    name: 'Time Worker',
+    short_name: 'TimeWorker',
+    description: 'Gérez et suivez votre temps de travail facilement',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#000000',
+    background_color: '#f5f3ff', // violet très clair (cohérent avec le design)
+    theme_color: '#6366f1', // indigo-500 (cohérent avec le design)
     icons: [
       {
         src: '/icon-192x192.png',
